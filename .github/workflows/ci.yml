@@ -68,6 +68,6 @@ jobs:
           # Defaults to the user or organization that owns the workflow file
           scope: '@realmembersymike'
       - run: npm install
-      - run: npm publish 
+      - run: npm publish --tag ${{ steps.version-bump.outputs.newTag }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
