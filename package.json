@@ -1,6 +1,6 @@
 {
   "name": "@realmembersymike/builder",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": {
@@ -8,7 +8,7 @@
     "email": "mike.mcgrath@membersy.com"
   },
   "repository": {
-    "type":"git",
+    "type": "git",
     "url": "https://github.com/realmembersymike/builder"
   },
   "scripts": {
