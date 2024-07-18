@@ -1,7 +1,7 @@
 {
   "name": "@realmembersymike/builder",
   "description": "",
-  "version": "0.5.9",
+  "version": "0.5.10",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": {

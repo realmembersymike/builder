@@ -2,7 +2,7 @@
 
 [![Build](https://github.com/realmembersymike/builder/actions/workflows/ci.yml/badge.svg)](https://github.com/realmembersymike/builder/actions/workflows/ci.yml) [![codecov](https://codecov.io/github/realmembersymike/builder/graph/badge.svg?token=T7IZ1WWXPB)](https://codecov.io/github/realmembersymike/builder)
 
-This is a CDK library construct that wraps most of the complexity in shipping an image to ecr. Its published as an npm package, for use in your project.
+This is a CDK library construct that wraps most of the complexity in shipping an image to ECR. Its published as an npm package, for use in your project.
 
 See the [packages tab](https://github.com/realmembersymike/builder/pkgs/npm/builder) tab for latest version and installation info.
 
