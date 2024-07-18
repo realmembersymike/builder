@@ -8,7 +8,7 @@ import * as process from 'process';
 
 
 
-export class TESTPHPDockerImageStack extends Stack {
+export class TestDockerImageStack extends Stack {
     constructor(scope: Construct, id: string) {
         super(scope, id);
 
@@ -16,7 +16,7 @@ export class TESTPHPDockerImageStack extends Stack {
             repositoryName: 'testrepo',
           });
 
-          new builder.EcrImageBuilder(this, 'TestPHPImageBuilder', {
+          new builder.EcrImageBuilder(this, 'TestImageBuilder', {
             source: builder.DockerImageSource.directory(path.join(process.cwd(), '/test/', 'dockerfiles/node18')),
             destination: builder.EcrImageDestination.ecr(repo, {
                 tag: 'latest'

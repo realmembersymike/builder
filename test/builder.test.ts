@@ -1,14 +1,14 @@
 // imports
 import { Template, Match } from 'aws-cdk-lib/assertions';
 import * as cdk from 'aws-cdk-lib/core';
-import {TESTPHPDockerImageStack} from './integ/app';
+import {TestDockerImageStack} from './integ/app';
 
 
 
 describe('DockerImageDeploy', () => {
 	const app = new cdk.App();
 
-	const PHPDockerStack = new TESTPHPDockerImageStack(app, 'TestStack');
+	const PHPDockerStack = new TestDockerImageStack(app, 'TestStack');
 
 	// Prepare the stack for assertions.
 	const template = Template.fromStack(PHPDockerStack);
