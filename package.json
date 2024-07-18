@@ -1,0 +1,37 @@
+{
+  "name": "@realmembersymike/builder",
+  "version": "0.1.0",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "author": {
+    "name": "Mike McGrath",
+    "email": "mike.mcgrath@membersy.com"
+  },
+  "repository": {
+    "type":"git",
+    "url": "https://github.com/realmembersymike/builder"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.141",
+    "@types/jest": "^29.5.12",
+    "@types/node": "20.14.9",
+    "aws-cdk-lib": "2.149.0",
+    "constructs": "^10.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.5",
+    "typescript": "~5.5.3"
+  },
+  "peerDependencies": {
+    "aws-cdk-lib": "2.149.0",
+    "constructs": "^10.0.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1659.0",
+    "esbuild": "^0.23.0"
+  }
+}
