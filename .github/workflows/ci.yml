@@ -1,8 +1,9 @@
 name: Build
 
 on:
-  push:
-    branches: ["main"]
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -51,23 +52,3 @@ jobs:
         env:
           NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
         run: echo "new tag $NEW_TAG"
-
-  publish:
-    needs: [build, version]
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      packages: write
-    steps:
-      - uses: actions/checkout@v4
-      # Setup .npmrc file to publish to GitHub Packages
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18.x'
-          registry-url: 'https://npm.pkg.github.com'
-          # Defaults to the user or organization that owns the workflow file
-          scope: '@realmembersymike'
-      - run: npm install
-      - run: npm publish --tag ${{ steps.version-bump.outputs.newTag }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
