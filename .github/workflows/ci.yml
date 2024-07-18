@@ -1,4 +1,4 @@
-name: CDK Build And Publish
+name: Build
 
 on:
   push:
