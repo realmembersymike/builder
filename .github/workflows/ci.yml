@@ -10,7 +10,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 18
       uses: actions/setup-node@v3
       with:
         node-version: 18
@@ -24,10 +24,13 @@ jobs:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   
-  version-bump:
+  version:
     needs: [build]
-    name: 'Bump Version on master'
+    name: 'Bump Version on main'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
     steps:
       - name: 'Checkout source code'
         uses: 'actions/checkout@v3'
@@ -50,7 +53,7 @@ jobs:
         run: echo "new tag $NEW_TAG"
 
   publish:
-    needs: [build]
+    needs: [build, version]
     runs-on: ubuntu-latest
     permissions:
       contents: write
