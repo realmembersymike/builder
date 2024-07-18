@@ -61,13 +61,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       # Setup .npmrc file to publish to GitHub Packages
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v3
         with:
           node-version: '18.x'
           registry-url: 'https://npm.pkg.github.com'
           # Defaults to the user or organization that owns the workflow file
           scope: '@realmembersymike'
-      - run: npm ci
-      - run: npm publish
+      - run: npm install
+      - run: npm publish --tag $NEW_TAG
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

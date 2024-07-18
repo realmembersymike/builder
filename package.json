@@ -1,5 +1,6 @@
 {
-  "name": "@realmembersymike/builder",
+  "name": "builder",
+  "description": "",
   "version": "0.5.3",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -9,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/realmembersymike/builder"
+    "url": "git+https://github.com/realmembersymike/builder.git"
   },
   "scripts": {
     "build": "tsc",
