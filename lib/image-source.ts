@@ -85,12 +85,12 @@ class PHPDockerAssetDirectorySource extends DockerImageSource {
         asset.repository.grantPull(context.handlerRole);
     
         return {
-          imageUri: asset.assetHash,
+          imageUri: asset.imageUri,
           loginConfig: {
             loginCommand: `aws ecr get-login-password --region ${region} | docker login --username AWS --password-stdin ${accountId}.dkr.ecr.${region}.amazonaws.com`,
             region: region,
           },
-          imageTag: Fn.select(1, Fn.split(':', asset.assetHash)), // uri will be something like 'directory/of/image:tag' so this picks out the tag from the token
+          imageTag: Fn.select(1, Fn.split(':', asset.imageUri)), // uri will be something like 'directory/of/image:tag' so this picks out the tag from the token
         };
       }
 }
