@@ -1,42 +1,19 @@
 # Builder
 
 [![Build](https://github.com/realmembersymike/builder/actions/workflows/ci.yml/badge.svg)](https://github.com/realmembersymike/builder/actions/workflows/ci.yml)
+[![Publish](https://github.com/realmembersymike/builder/actions/workflows/publish.yml/badge.svg)](https://github.com/realmembersymike/builder/actions/workflows/publish.yml)
 [![codecov](https://codecov.io/github/realmembersymike/builder/graph/badge.svg?token=T7IZ1WWXPB)](https://codecov.io/github/realmembersymike/builder)  
-This is a CDK library construct that wraps most of the complexity in shipping an image to ECR. Its published as an npm package, for use in your project.
+
 
 See the [packages tab](https://github.com/realmembersymike/builder/pkgs/npm/builder) tab for latest version and installation info.
 
+# CDK Abstraction - Composition
 
-# Components Of The Construct
+Composition is the key pattern for defining higher-level abstractions through constructs. A high-level construct can be composed from any number of lower-level constructs. From a bottom-up perspective, you use constructs to organize the individual AWS resources that you want to deploy. You use whatever abstractions are convenient for your purpose, with as many levels as you need.
 
-The below is a basic example of how the contruct could be used in an existing CDK project:
+With composition, you define reusable components and share them like any other code. For example, a team can define a construct that implements the company’s best practice for an Amazon DynamoDB table, including backup, global replication, automatic scaling, and monitoring. The team can share the construct internally with other teams, or publicly.
 
-```typescript
-import * as ecr from 'aws-cdk-lib/aws-ecr';
-import * as builder from '@realmembersymike/builder';
-
-//The Construct requires 3 things - 
-
-//1. and instance of ecr.Repository, either new or existing
-const repo = new ecr.Repository.fromRepositoryName(this, 'MyRepository', 'latest');
-
-//2. A path to a valid Dockerfile location
-const source = builder.DockerImageSource.directory('path/to/dockerfile');
-
-//3. A valid Docker Image Host, only Supports aws ecr as of now
-const destination = builder.EcrImageDestination.ecr(repo, {tag: 'latest'});
-
-//4. Once you have a repo, source and destination, simply call new on the builder
-  new builder.EcrImageBuilder(stack, 'TestDeployment', {
-    source,
-    destination,
-});
-```
-
-
-## Full Example
-
-Full example assuming the contruct is being used inside of a Stack:
+Teams can use constructs like any other library package. When the library is updated, developers get access to the new version’s improvements and bug fixes, similar to any other code library.
 
 ```typescript
 import * as path from 'path';
@@ -47,23 +24,23 @@ import * as ecr from 'aws-cdk-lib/aws-ecr';
 import * as builder from '@realmembersymike/builder';
 
 export class MyDockerImageDeployment extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
-    super(scope, id, props);
+	
+	constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     
-    const repository = new ecr.Repository(this, "nodeapp", {
-      repositoryName: "nodeapp"
-    });
+		super(scope, id, props);
 
-    const source = builder.DockerImageSource.directory(path.join(process.cwd()));
-    
-    const destination = builder.EcrImageDestination.ecr(repository, {tag: 'latest'});
+		//An instance of ecr.Repository, either new or existing
+		const repository = new ecr.Repository(this, "nodeapp", {
+			repositoryName: "nodeapp"
+		});
 
-    const image = new builder.EcrImageBuilder(stack, 'TestDeployment', {
-        source,
-        destination,
-    });
+		//A path to a valid Dockerfile location and A valid Docker Image Host, only Supports aws ecr as of now
+		new builder.EcrImageBuilder(stack, 'EcsService', {
+			source: builder.DockerImageSource.directory(path.join(process.cwd()));
+			destination: builder.EcrImageDestination.ecr(repository, {tag: 'latest'});
+		});
 
-  }
+  	}
 }
 
 ```
@@ -71,4 +48,3 @@ export class MyDockerImageDeployment extends cdk.Stack {
 ## Testing
 
 You can run the test suite localy with `npm run test`
-
