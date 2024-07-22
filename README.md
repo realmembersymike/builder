@@ -1,6 +1,6 @@
 # Builder
 
-[![Build](https://github.com/realmembersymike/builder/actions/workflows/ci.yml/badge.svg)](https://github.com/realmembersymike/builder/actions/workflows/ci.yml)
+[![Build](https://github.com/realmembersymike/builder/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/realmembersymike/builder/actions/workflows/ci.yml)
 [![Publish](https://github.com/realmembersymike/builder/actions/workflows/publish.yml/badge.svg)](https://github.com/realmembersymike/builder/actions/workflows/publish.yml)
 [![codecov](https://codecov.io/github/realmembersymike/builder/graph/badge.svg?token=T7IZ1WWXPB)](https://codecov.io/github/realmembersymike/builder)  
 
