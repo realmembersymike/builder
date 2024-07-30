@@ -47,4 +47,4 @@ export class MyDockerImageDeployment extends cdk.Stack {
 
 ## Testing
 
-You can run the test suite localy with `npm run test`
+You can run the test suite localy with `npm run test`. The tests are published to codecov. 
